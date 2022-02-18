@@ -16,14 +16,14 @@ class Responder(models.Model):
         (ANOTHER, 'another'),
     )
 
-	birth_date = models.DateField(verbose_name='respondrs birth date')
+	birth_date = models.DateField(verbose_name='respondrs birth date', null=True, blank=True)
 	gender = models.CharField(
 		max_length=1, 
 		verbose_name='gender',
 		choices=GENDER,
 		default=ANOTHER
 	)
-
+	interrogator_id = models.ForeignKey(User, verbose_name='interrogator', on_delete=models.CASCADE)
 	def __str__(self):
 		return 'Responder: {} , {}'.format(self.birth_date, self.gender)
 
