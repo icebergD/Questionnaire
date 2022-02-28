@@ -1,11 +1,14 @@
 import requests
+from requests.auth import HTTPBasicAuth
 
-url = 'http://127.0.0.1:8000/api/v1/responder'
+url = 'http://127.0.0.1:8000/api/v1/BaseSubquestion/'
+auth = HTTPBasicAuth('admin', 'qwerty')
 myobj = {
-            "birth_date": "2023-02-17",
-            "gender": "m"
+            "question": "is it right?",
+            "predefined_answer": "very"
+         
         }
 
-x = requests.post(url, data = myobj)
+x = requests.post(url, data = myobj, auth=auth)
 
 print(x.text)

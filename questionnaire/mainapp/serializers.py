@@ -2,7 +2,10 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-from .models import Responder
+from .models import (
+						Responder, PrimaryQuestionBase, PrimaryQuestionAnswer, 
+						SubquestionBase, SubquestionPredefinedAnswer, SubquestionAnswer
+					)
 
 
 class ResponderSerializer(serializers.ModelSerializer):
@@ -11,6 +14,42 @@ class ResponderSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Responder
 		fields = "__all__"
+
+class BasePrimaryQuestionSerializer(serializers.ModelSerializer):
+	interrogator_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+	class Meta:
+		model = PrimaryQuestionBase
+		fields = "__all__"
+
+class AnswerPrimaryQuestionSerializer(serializers.ModelSerializer):
+	interrogator_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+	class Meta:
+		model = PrimaryQuestionAnswer
+		fields = "__all__"
+
+class BaseSubquestionSerializer(serializers.ModelSerializer):
+	interrogator_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+	class Meta:
+		model = SubquestionBase
+		fields = "__all__"
+
+class AnswerSubquestionPredefinedSerializer(serializers.ModelSerializer):
+	interrogator_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+	class Meta:
+		model = SubquestionPredefinedAnswer
+		fields = "__all__"
+
+class AnswerSubquestionSerializer(serializers.ModelSerializer):
+	interrogator_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+	class Meta:
+		model = SubquestionAnswer
+		fields = "__all__"
+
 
 
 # class ResponderModel:
