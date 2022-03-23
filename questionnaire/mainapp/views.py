@@ -8,6 +8,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from django.shortcuts import render
 from django.forms import model_to_dict
+from django.http import HttpResponse
 
 from .models import (
 						Responder, PrimaryQuestionBase, PrimaryQuestionAnswer, 
@@ -18,6 +19,9 @@ from .serializers import (
 							AnswerPrimaryQuestionSerializer, BaseSubquestionSerializer,
 							AnswerSubquestionPredefinedSerializer, AnswerSubquestionSerializer
 						)
+
+def homePageView(request):
+    return HttpResponse("Hello, World!")
 
 
 class ResponderListAPIView(generics.ListCreateAPIView):

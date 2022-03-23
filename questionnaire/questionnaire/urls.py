@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 from mainapp.views import (
+								homePageView,
 								ResponderListAPIView, BasePrimaryQuestionListAPIView, 
 								AnswerPrimaryQuestionListAPIView, BaseSubquestionListAPIView,
 								AnswerSubquestionPredefinedListAPIView, AnswerSubquestionListAPIView
@@ -10,6 +11,8 @@ from mainapp.views import (
 from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
+
+	path("", homePageView),
 	path('admin/', admin.site.urls),
 	path('api/v1/responder/', ResponderListAPIView.as_view()),
 	path('api/v1/BasePrimaryQuestion/', BasePrimaryQuestionListAPIView.as_view()),

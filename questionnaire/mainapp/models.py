@@ -53,7 +53,7 @@ class PrimaryQuestionAnswer(models.Model):
 
 
 class SubquestionBase(models.Model):
-
+	primary_question = models.ForeignKey(PrimaryQuestionBase, verbose_name='primary question id', on_delete=models.CASCADE)
 	question = models.TextField(verbose_name='question')
 	interrogator_id = models.ForeignKey(User, verbose_name='interrogator', on_delete=models.CASCADE)
 
